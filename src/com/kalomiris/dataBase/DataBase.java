@@ -47,7 +47,7 @@ public class DataBase {
 
     public static Stock retrieveStock(String symbol){
         for (Stock element : stocksList){
-            if(symbol.equals(element.getSymbol())){
+            if(symbol.equalsIgnoreCase(element.getSymbol())){
                 return element;
             }
         }
