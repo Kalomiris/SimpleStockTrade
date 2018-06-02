@@ -5,7 +5,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 public interface StockService {
-    List<Double> stockPriceList = new ArrayList<>();
      double calculateDividendYield(Stock stock);
      double calculateRatio(Stock stock);
      double calculateStockPrice(Stock stock);
