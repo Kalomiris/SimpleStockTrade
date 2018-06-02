@@ -29,7 +29,7 @@ public class StockServiceImpl implements StockService {
     }
 
     @Override
-    public double calculateStockPrice(Stock stock) {        //stockPrice = Sum(tradePrice* quantity) / Sum(quantity).
+    public double calculateStockPrice(Stock stock) {        //stockPrice =Sum(tradePrice* quantity) / Sum(quantity).
         double sumProduction = 0.0;
         int sumQuantity = 0;
         for (Trade element : stock.getTradeList()) {
