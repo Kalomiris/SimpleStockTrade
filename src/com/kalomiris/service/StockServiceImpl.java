@@ -8,8 +8,6 @@ public class StockServiceImpl implements StockService {
     private TradeServiceImpl tradeServiceImpl = new TradeServiceImpl();
 
 
-
-
     @Override
     public double calculateDividendYield(Stock stock) {
         int lastDividend = stock.getLastDividend();
