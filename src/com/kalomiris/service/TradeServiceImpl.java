@@ -14,7 +14,7 @@ public class TradeServiceImpl implements TradeService {
 
     public boolean findTradeSpecificDate(Trade trade, int time) {
         Date date = ComputeDate.computeSpecificDate(time);
-        boolean isBefore = (trade.getDate().after(date)) ? true : false;
+        boolean isBefore = (date.after(trade.getDate())) ? true : false;
         return isBefore;
     }
 
