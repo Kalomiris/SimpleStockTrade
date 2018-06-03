@@ -22,8 +22,10 @@ public class Main {
         boolean quit = false;
         while (!quit) {
 
-            System.out.println("Press -1- for stock trade or -2- for calculating the GBCE All Shares\n" +
-                    "-0- to quit.\n");
+            System.out.println("Press:\n" +
+                                    "1- for stock trade functions\n" +
+                                    "2- for calculating the GBCE all Shares\n" +
+                                    "0- to quit.\n");
             int firstAction = enterAction();
 
             switch (firstAction) {
@@ -40,7 +42,7 @@ public class Main {
                     /**    For a given stock   */
 
                     Stock newStock = chooseStock();
-
+                    printActions();
                     int secondAction = enterAction();
 
                     switch (secondAction) {
@@ -49,7 +51,9 @@ public class Main {
 
                             /**  Compute dividend yield  */
                             double dividendYield = stockServiceImpl.calculateDividendYield(newStock);
-                            System.out.println("Dividend yield: " + dividendYield);
+                            System.out.println("=====================");
+                            System.out.println("Dividend yield: " + String.format("%.2f",dividendYield));
+                            System.out.println("=====================\n");
                             break;
 
                         case 2:
@@ -57,7 +61,9 @@ public class Main {
                             /** Compute P/E Ratio  */
                             double ration = stockServiceImpl.calculateRatio(newStock);
                             if (ration != 0.0) {
-                                System.out.println("Ratio: " + ration);
+                                System.out.println("=====================");
+                                System.out.println("Ratio: " +String.format("%.2f",ration));
+                                System.out.println("=====================\n");
                             } else {
                                 System.out.println("Try again...");
                             }
@@ -67,18 +73,22 @@ public class Main {
 
                             /** Record a trade  */
                             Trade currentTrade = newStock.getTradeList().get(1);   //Choose (randomly) one of two trade of specific stock.
-                            System.out.println("\n\n" + currentTrade.getDate() +
+                            System.out.println("=======================");
+                            System.out.println(currentTrade.getDate() +
                                                 "\nGiven symbol of stock: " + newStock.getSymbol() +
                                                 "\nQuantity: " + currentTrade.getQuantity() +
                                                 "\nIs " + currentTrade.getIndicator() +
                                                 "\nPrice: " + currentTrade.getTradePrice());
+                            System.out.println("=======================\n");
                             break;
 
                         case 4:
 
                             /**Compute the price of stock for all trade in past 15 min  */
                             double stockPrice = stockServiceImpl.calculateStockPriceTime(newStock, 15);
-                            System.out.println("\n\nThe stock price in the 15 last minute is: " + stockPrice);
+                            System.out.println("===========================");
+                            System.out.println("The stock price in the 15 last minute is: " + stockPrice);
+                            System.out.println("===========================\n");
                             break;
 
                         case 5:
@@ -88,7 +98,7 @@ public class Main {
 
                         default:
 
-                            System.out.println("Wrong input, press 1 to 5...\n");
+                            System.out.println("\nWrong input, press 1 to 5...\n");
                     }
 
                     break;
@@ -99,7 +109,9 @@ public class Main {
                      * the geometric mean of prices for all stocks  */
 
                     double goeMeans = stockServiceImpl.calculateGeoMean();
+                    System.out.println("===================================");
                     System.out.println("The Geometric mean of all stocks is: " + goeMeans);
+                    System.out.println("===================================\n");
                     break;
 
                 default:
@@ -132,10 +144,11 @@ public class Main {
     }
 
     public static int enterAction() {
-        System.out.println("\n...Enter action: ");
+        System.out.println("Enter action: ");
         do {
             try {
-                int action = Integer.parseInt(scanner.readLine());
+               int action = Integer.parseInt(scanner.readLine());
+               return action;
             } catch (IOException e) {
                 System.out.println("\nPlease try again...\n");
             } catch (WrongNumberException m) {
