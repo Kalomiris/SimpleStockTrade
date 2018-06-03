@@ -18,15 +18,5 @@ public class TradeServiceImpl implements TradeService {
         return isBefore;
     }
 
-//    @Override
-//    public void addRecord(Trade trade) {
-//        newTrade = ("b".equals(indicator)) ? new Trade(quantity, tradePrice, Trade.INDICATOR.BUY) :
-//                new Trade(quantity, tradePrice, Trade.INDICATOR.SELL);
-//
-//        newStock.addTrade(newTrade);              //add new trade in my list (in Stock class)
-//        tradeServiceImpl.addRecord(newTrade);            //record each new trade
-//        tradeRecords.add(trade);
-//    }
-
 
 }
