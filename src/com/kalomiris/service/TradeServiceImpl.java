@@ -24,6 +24,7 @@ public class TradeServiceImpl implements TradeService {
                     "\nQuantity: " + element.getQuantity() +
                     "\nIs " + element.getIndicator() +
                     "\nPrice: " + element.getTradePrice());
+            System.out.println("==========================================");
         }
     }
 
