@@ -64,7 +64,8 @@ public class StockServiceImpl implements StockService {
             productStockPrice *= calculateStockPrice(element);
             counter++;
         }
-        return Math.pow(productStockPrice, 1/counter);
+        return Math.pow(productStockPrice, (double) 1/counter);
+
     }
 
     private boolean findTradeSpecificDate(Trade trade, int time) {
