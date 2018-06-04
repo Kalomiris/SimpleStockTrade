@@ -3,18 +3,17 @@ package com.kalomiris;
 import com.kalomiris.dataBase.DataBase;
 import com.kalomiris.exception.WrongNumberException;
 import com.kalomiris.model.Stock;
-import com.kalomiris.model.Trade;
 import com.kalomiris.service.StockServiceImpl;
 import com.kalomiris.service.TradeServiceImpl;
 
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.util.Date;
 
 public class Main {
 
-    public static StockServiceImpl stockServiceImpl = new StockServiceImpl();
+    private static StockServiceImpl stockServiceImpl = new StockServiceImpl();
+    private static TradeServiceImpl tradeServiceImpl = new TradeServiceImpl();
     private static BufferedReader scanner = new BufferedReader(new InputStreamReader(System.in));
 
     public static void main(String[] args) {
@@ -42,6 +41,10 @@ public class Main {
                     /**    For a given stock   */
 
                     Stock newStock = chooseStock();
+
+                    //Create new trade:
+                    makeNewTrade(newStock);
+
                     printActions();
                     int secondAction = enterAction();
 
@@ -72,13 +75,8 @@ public class Main {
                         case 3:
 
                             /** Record a trade  */
-                            Trade currentTrade = newStock.getTradeList().get(1);   //Choose (randomly) one of two trade of specific stock.
                             System.out.println("=======================");
-                            System.out.println(currentTrade.getDate() +
-                                                "\nGiven symbol of stock: " + newStock.getSymbol() +
-                                                "\nQuantity: " + currentTrade.getQuantity() +
-                                                "\nIs " + currentTrade.getIndicator() +
-                                                "\nPrice: " + currentTrade.getTradePrice());
+                            tradeServiceImpl.recordTrade(newStock);
                             System.out.println("=======================\n");
                             break;
 
@@ -141,6 +139,23 @@ public class Main {
                 System.out.println("\nYou can press only the given symbol, please try again...\n\n");
             }
         } while (true);
+    }
+
+    public static void makeNewTrade(Stock newStock){
+        do {
+            try {
+                System.out.println("Give the quantity of trade; ");
+                int quantity = Integer.parseInt(scanner.readLine());
+                System.out.println("Give the trade price: ");
+                double tradePrice = Double.parseDouble(scanner.readLine());
+                System.out.println("Press b if the trade is buy - Press s if trade is purchase: ");
+                String indicator = scanner.readLine();
+                tradeServiceImpl.createNewTrade(quantity, tradePrice, indicator, newStock);
+                break;
+            } catch (Exception e) {
+                System.out.println("Please try again...");
+            }
+        }while (true);
     }
 
     public static int enterAction() {
