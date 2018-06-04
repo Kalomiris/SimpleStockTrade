@@ -54,6 +54,10 @@ public class DataBase {
         return null;
     }
 
+    public static void addTrade(Trade newTrade, Stock stock){
+        stock.addInTradeList(newTrade);
+    }
+
     public static List<Stock> getStocksList() {
         return stocksList;
     }
