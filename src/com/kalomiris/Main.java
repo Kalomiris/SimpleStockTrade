@@ -65,7 +65,7 @@ public class Main {
                             double ration = stockServiceImpl.calculateRatio(newStock);
                             if (ration != 0.0) {
                                 System.out.println("=====================");
-                                System.out.println("Ratio: " +String.format("%.2f",ration));
+                                System.out.println("Ratio: " +String.format("%.2f", ration));
                                 System.out.println("=====================\n");
                             } else {
                                 System.out.println("Try again...");
@@ -84,9 +84,9 @@ public class Main {
 
                             /**Compute the price of stock for all trade in past 15 min  */
                             double stockPrice = stockServiceImpl.calculateStockPriceTime(newStock, 15);
-                            System.out.println("===========================");
-                            System.out.println("The stock price in the 15 last minute is: " + stockPrice);
-                            System.out.println("===========================\n");
+                            System.out.println("==================================================");
+                            System.out.println("The stock price in the 15 last minute is: " + String.format("%.2f", stockPrice));
+                            System.out.println("==================================================\n");
                             break;
 
                         case 5:
@@ -107,9 +107,9 @@ public class Main {
                      * the geometric mean of prices for all stocks  */
 
                     double goeMeans = stockServiceImpl.calculateGeoMean();
-                    System.out.println("===================================");
-                    System.out.println("The Geometric mean of all stocks is: " + goeMeans);
-                    System.out.println("===================================\n");
+                    System.out.println("================================================");
+                    System.out.println("The Geometric mean of all stocks is: " + String.format("%.2f", goeMeans));
+                    System.out.println("================================================\n");
                     break;
 
                 default:
