@@ -59,6 +59,10 @@ public class Stock {
         this.tradeList = tradeList;
     }
 
+    public void addInTradeList(Trade trade) {
+        tradeList.add(trade);
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
