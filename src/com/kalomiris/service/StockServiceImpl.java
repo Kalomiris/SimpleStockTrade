@@ -3,6 +3,10 @@ package com.kalomiris.service;
 import com.kalomiris.dataBase.DataBase;
 import com.kalomiris.model.Stock;
 import com.kalomiris.model.Trade;
+import com.kalomiris.utils.DateUtils;
+
+import java.util.Calendar;
+import java.util.Date;
 
 public class StockServiceImpl implements StockService {
     private TradeServiceImpl tradeServiceImpl = new TradeServiceImpl();
@@ -43,7 +47,7 @@ public class StockServiceImpl implements StockService {
         double sumProduction = 0;
         int sumQuantity = 0;
         for (Trade element : stock.getTradeList()){
-            if (tradeServiceImpl.findTradeSpecificDate(element,time)){
+            if (findTradeSpecificDate(element,time)){
                 sumProduction += element.getTradePrice() * element.getQuantity();
                 sumQuantity += element.getQuantity();
             }
@@ -61,5 +65,10 @@ public class StockServiceImpl implements StockService {
             counter++;
         }
         return Math.pow(productStockPrice, 1/counter);
+    }
+
+    private boolean findTradeSpecificDate(Trade trade, int time) {
+        Date date = DateUtils.computeSpecificDate(time, Calendar.MINUTE);
+        return date.after(trade.getDate());
     }
 }
